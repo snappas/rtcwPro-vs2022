@@ -37,17 +37,17 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -77,21 +77,27 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\ProjectMacros.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\ProjectMacros.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\ProjectMacros.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\ProjectMacros.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\ProjectMacros.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\ProjectMacros.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -146,8 +152,7 @@
     </Link>
     <ProjectReference />
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)Builds\$(Configuration)\$(ProjectName)\$(TargetName)$(TargetExt) "$(RTCWBASE)\$(RTCW_MOD_NAME)"
-..\..\libs\zip.exe -uj "$(RTCWBASE)\$(RTCW_MOD_NAME)\rtcwpro_bin.pk3" "$(SolutionDir)Builds\$(Configuration)\$(ProjectName)\$(TargetName)$(TargetExt)"</Command>
+      <Command>$(RTCWPRO_BIN_POST-BUILD)</Command>
       <Message> Copying file to $(RTCWBASE)\$(RTCW_MOD_NAME) ..</Message>
     </PostBuildEvent>
     <Bscmake>
@@ -174,7 +179,7 @@
       <ImportLibrary>$(SolutionDir)Builds\$(Configuration)\$(ProjectName)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)Builds\Debug\$(ProjectName)\$(TargetName)$(TargetExt) "$(RTCWBASE)\$(RTCW_MOD_NAME)"</Command>
+      <Command>$(RTCWPRO_BIN_POST-BUILD)</Command>
       <Message> Copying file to $(RTCWBASE)\$(RTCW_MOD_NAME) ..</Message>
     </PostBuildEvent>
     <Bscmake>
@@ -215,15 +220,16 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\qcommon\jansson_win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>../qcommon/jansson_win/jansson.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\qcommon\jansson_win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>jansson.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)Builds\$(Configuration)\$(ProjectName)\$(TargetName)$(TargetExt)</OutputFile>
       <ProgramDatabaseFile>$(SolutionDir)Builds\$(Configuration)\$(ProjectName)\$(TargetName).pdb</ProgramDatabaseFile>
       <MapFileName>$(SolutionDir)Builds\$(Configuration)\$(ProjectName)\$(TargetName).map</MapFileName>
       <ImportLibrary>$(SolutionDir)Builds\$(Configuration)\$(ProjectName)\$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>game.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)Builds\$(Configuration)\$(ProjectName)\$(TargetName)$(TargetExt) "$(RTCWBASE)\$(RTCW_MOD_NAME)"</Command>
+      <Command>$(RTCWPRO_BIN_POST-BUILD)</Command>
       <Message> Copying file to $(RTCWBASE)\$(RTCW_MOD_NAME) ..</Message>
     </PostBuildEvent>
     <Bscmake>
