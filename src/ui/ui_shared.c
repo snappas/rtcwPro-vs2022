@@ -3990,6 +3990,11 @@ static bind_t g_bindings[] =
 	{ "+zoomView", -1, -1, -1, -1 },
 	{ "+vstr", -1, -1, -1, -1 },
 	// -OSPx
+	// RTCWPro
+	{ "cvaradd", -1, -1, -1, -1 },
+	{ "cvarmult", -1, -1, -1, -1 },
+	{ "toggle", -1, -1, -1, -1 },
+	// -RTCWPro
 	{"+stats",		-1,             -1, -1, -1},
 	{"+wstats",		-1,             -1, -1, -1},
 	{"+topshots",	-1,             -1, -1, -1},

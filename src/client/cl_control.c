@@ -115,4 +115,66 @@ void CL_GenerateSS(char* address, char* hookid, char* hooktoken, char* waittime,
 		Threads_Create(CL_HTTP_SSUpload, SS_info);
 	}
 }
+/*
+* RTCWPro cvar add 
+*/
+void CL_Cvar_Add(char* cvarName, char* cvarAdd) {
+	extern cvar_t* cvar_vars;
+	cvar_t* var;
+	for (var = cvar_vars; var; var = var->next) {
+		if (_strcmpi(var->name, cvarName) == 0) {
+			if (strchr(cvarAdd, '.')) {
+				float value = var->value;
+				value += atof(cvarAdd);
+				Cvar_SetLatched(var->name, va("%f", value));
+			}
+			else 
+			{
+				int value = var->integer;
+				value += atoi(cvarAdd);
+				Cvar_SetLatched(var->name, va("%d", value));
+			}
+			break;
+		}
+	}
+}
+/*
+* RTCWPro cvar multiply
+*/
+void CL_Cvar_Mult(char* cvarName, char* cvarMult) {
+	extern cvar_t* cvar_vars;
+	cvar_t* var;
+	for (var = cvar_vars; var; var = var->next) {
+		if (_strcmpi(var->name, cvarName) == 0) {
+			if (strchr(cvarMult, '.')) {
+				float value = var->value;
+				value *= atof(cvarMult);
+				Cvar_SetLatched(var->name, va("%f", value));
+			}
+			else
+			{
+				int value = var->integer;
+				value *= atoi(cvarMult);
+				Cvar_SetLatched(var->name, va("%d", value));
+			}
+			break;
+		}
+	}
+}
 
+/*
+* RTCWPro cvar toggle
+*/
+void CL_Cvar_Toggle(char* cvarName) {
+	extern cvar_t* cvar_vars;
+	cvar_t* var;
+	for (var = cvar_vars; var; var = var->next) {
+		if (_strcmpi(var->name, cvarName) == 0) {
+				int value = var->integer;
+				value != var->integer;
+				Cvar_SetLatched(var->name, va("%d", value));
+		}
+		break;
+		
+	}
+}

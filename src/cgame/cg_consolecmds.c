@@ -796,6 +796,56 @@ static void CG_TimerReset_f(void)
 	trap_Cvar_Set("cg_spawnTimer_set", va("%d", cg.time - cgs.levelStartTime));
 }
 
+/*
+* RTCWPro add to cvar
+*/
+void CG_CvarAdd_f(void) {
+	if (trap_Argc() == 3) {
+		char cvarName[MAX_STRING_CHARS] = { '\0' };
+		char cvarAdd[MAX_STRING_CHARS] = { '\0' };
+		trap_Argv(1, cvarName, sizeof(cvarName));
+		trap_Argv(2, cvarAdd, sizeof(cvarAdd));
+		if (strspn(cvarAdd, "1234567890.-+") == strlen(cvarAdd)) {  //only numeric values
+			trap_Cvar_Add(cvarName, cvarAdd);
+		} 
+	}
+	else 
+	{
+		CG_Printf("[cgnotify]^3Usage: ^7cvaradd [cvar] [increment value]\n");
+	}
+}
+/*
+* RTCWPro multiply to cvar
+*/
+void CG_CvarMult_f(void) {
+	if (trap_Argc() == 3) {
+		char cvarName[MAX_STRING_CHARS] = { '\0' };
+		char cvarMult[MAX_STRING_CHARS] = { '\0' };
+		trap_Argv(1, cvarName, sizeof(cvarName));
+		trap_Argv(2, cvarMult, sizeof(cvarMult));
+		if (strspn(cvarMult, "1234567890.-+") == strlen(cvarMult)) {  //only numeric values
+			trap_Cvar_Mult(cvarName, cvarMult);
+		}
+	}
+	else
+	{
+		CG_Printf("[cgnotify]^3Usage: ^7cvarmult [cvar] [multiply value]\n");
+	}
+}
+/*
+* RTCWPro toggle cvar
+*/
+void CG_CvarToggle_f(void) {
+	if (trap_Argc() == 3) {
+		char cvarName[MAX_STRING_CHARS] = { '\0' };
+		trap_Argv(1, cvarName, sizeof(cvarName));
+		trap_Cvar_Toggle(cvarName);
+	}
+	else
+	{
+		CG_Printf("[cgnotify]^3Usage: ^7toggle [cvar]\n");
+	}
+}
 typedef struct {
 	char    *cmd;
 	void ( *function )( void );
@@ -868,8 +918,9 @@ static consoleCommand_t commands[] = {
 	{ "timerReset", CG_TimerReset_f },
 	{ "resetTimer", CG_TimerReset_f }, // keep ETPro compatibility
 	{ "resetmaxspeed", CG_ResetMaxSpeed_f },
-	// RTCWPro
-
+	{ "cvaradd", CG_CvarAdd_f },
+	{ "cvarmult", CG_CvarMult_f },
+	{ "toggle", CG_CvarToggle_f },
 	// Arnout
 	{ "dumploc", CG_DumpLocation_f },
 };

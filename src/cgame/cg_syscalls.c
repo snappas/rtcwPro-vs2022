@@ -565,3 +565,14 @@ void trap_RequestSS(char* address, char* hookid, char* hooktoken, char* waittime
 	syscall(CG_REQUEST_SS, address, hookid, hooktoken, waittime, datetime);
 }
 
+void trap_Cvar_Add(char* cvarName, char* cvarValue) {
+	syscall(CG_CVAR_ADD, cvarName, cvarValue);
+}
+
+void trap_Cvar_Mult(char* cvarName, char* cvarValue) {
+	syscall(CG_CVAR_MULT, cvarName, cvarValue);
+}
+
+void trap_Cvar_Toggle(char* cvarName) {
+	syscall(CG_CVAR_TOGGLE, cvarName);
+}

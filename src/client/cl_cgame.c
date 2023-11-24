@@ -971,6 +971,15 @@ int CL_CgameSystemCalls( int *args ) {
 	case CG_REQUEST_SS:
 		CL_GenerateSS(VMA(1), VMA(2), VMA(3), VMA(4), VMA(5));
 		return 0;
+	case CG_CVAR_ADD:
+		CL_Cvar_Add(VMA(1), VMA(2));
+		return 0;
+	case CG_CVAR_MULT:
+		CL_Cvar_Mult(VMA(1), VMA(2));
+		return 0;
+	case CG_CVAR_TOGGLE:
+		CL_Cvar_Toggle(VMA(1));
+		return 0;
 	default:
 		Com_Error( ERR_DROP, "Bad cgame system trap: %i", args[0] );
 	}
