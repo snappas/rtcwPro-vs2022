@@ -657,12 +657,14 @@ qboolean CL_Netchan_Process( netchan_t *chan, msg_t *msg );
 // RTCWPro - cl_control.c - source: Nate (rtcwMP)
 //
 void CL_GenerateSS(char* address, char* hookid, char* hooktoken, char* waittime, char* datetime);
+
 //
 // RTCWPro - Cvar Add/Mult/Toggle
 //
 void CL_Cvar_Add(char* cvarName, char* cvarAdd);
 void CL_Cvar_Mult(char* cvarName, char* cvarMult);
 void CL_Cvar_Toggle(char* cvarName);
+
 
 #endif // !__CLIENT_H
 

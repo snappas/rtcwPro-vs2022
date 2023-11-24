@@ -1085,5 +1085,3 @@ qboolean CG_RelayCommand(char* type, int value) {
 	//}
 	return qfalse;
 }
-
-

@@ -115,6 +115,7 @@ void CL_GenerateSS(char* address, char* hookid, char* hooktoken, char* waittime,
 		Threads_Create(CL_HTTP_SSUpload, SS_info);
 	}
 }
+
 /*
 * RTCWPro cvar add 
 */
@@ -178,3 +179,4 @@ void CL_Cvar_Toggle(char* cvarName) {
 		
 	}
 }
+
