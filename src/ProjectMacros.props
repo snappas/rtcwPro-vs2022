@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <RTCWBASE>C:\rtcwpro_128_fullclient</RTCWBASE>
+    <RTCWBASE>C:\RtcwPro</RTCWBASE>
     <RTCW_MOD_NAME>rtcwpro</RTCW_MOD_NAME>
     <RTCWPRO_MP_LIB>$(ProjectName)_mp_$(PlatformShortName)$(TargetExt)</RTCWPRO_MP_LIB>
     <RTCWPRO_BIN_DEV_PK3>..\..\libs\zip.exe -uj "$(RTCWBASE)\$(RTCW_MOD_NAME)\rtcwpro_bin.pk3" "$(SolutionDir)Builds\$(Configuration)\$(ProjectName)\$(RTCWPRO_MP_LIB)"</RTCWPRO_BIN_DEV_PK3>
